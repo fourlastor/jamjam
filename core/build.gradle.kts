@@ -5,6 +5,10 @@ plugins {
     id("gdx-assets")
 }
 
+gdxAssets {
+    assetsDirectory.value(project.files("src/main/resources"))
+}
+
 spotless {
     isEnforceCheck = false
     kotlin {
