@@ -10,8 +10,8 @@ import com.badlogic.gdx.utils.Disposable
 
 class AssetFactory(private val scale: Float) : Disposable {
 
-    private val atlas by lazy { TextureAtlas(Gdx.files.internal("tiles.atlas"), true) }
-    private val parallaxAtlas by lazy { TextureAtlas(Gdx.files.internal("parallax.atlas"), true)}
+    private val atlas by lazy { TextureAtlas(Gdx.files.internal(Assets.resources_tiles_atlas), true) }
+    private val parallaxAtlas by lazy { TextureAtlas(Gdx.files.internal(Assets.resources_parallax_atlas), true)}
 
     fun tile(
         name: String,
