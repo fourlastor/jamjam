@@ -7,6 +7,7 @@ plugins {
 
 gdxAssets {
     assetsDirectory.value(project.files("src/main/resources"))
+    assetsPackage.value("io.github.fourlastor.jamjam")
 }
 
 spotless {

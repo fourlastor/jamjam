@@ -5,6 +5,7 @@ import com.squareup.javapoet.JavaFile
 import com.squareup.javapoet.TypeSpec
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.FileCollection
+import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.OutputFile
@@ -25,14 +26,20 @@ open class AssetsTask : DefaultTask() {
     @OutputDirectory
     val assetsClassDirectory = project.createProperty<File>()
 
+    @Input
+    val assetsPackage = project.createProperty<String>()
+
     @TaskAction
     fun generate() {
+        val assetsClassContainer = assetsClassDirectory.get()
+        if (assetsClassContainer.exists()) {
+            assetsClassContainer.deleteRecursively()
+        }
         val assets = directoryTypeSpec("Assets")
                 .addAssets()
                 .build()
-        // TODO this should be configurable
-        JavaFile.builder("io.github.fourlastor.jamjam", assets)
-                .build().writeTo(assetsClassDirectory.get())
+        JavaFile.builder(assetsPackage.get(), assets)
+                .build().writeTo(assetsClassContainer)
     }
 
     private fun TypeSpec.Builder.addAssets() = apply {

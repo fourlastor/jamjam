@@ -11,4 +11,7 @@ open class AssetsPluginExtension(project: Project) {
      */
     val assetsDirectory: Property<FileCollection> = project.createProperty<FileCollection>()
 
+    /** The package in which to generate the assets class. */
+    val assetsPackage: Property<String> = project.createProperty<String>()
+
 }

@@ -15,6 +15,7 @@ class AssetsPlugin : Plugin<Project> {
 
         project.tasks.register("assets", AssetsTask::class.java) { task ->
             task.assetsDirectory.set(exts.assetsDirectory)
+            task.assetsPackage.set(exts.assetsPackage)
             task.assetsClassDirectory.set(assetClassDirectory)
         }
 
