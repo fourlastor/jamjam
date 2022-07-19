@@ -13,7 +13,7 @@ class AssetsPlugin : Plugin<Project> {
         val generatedSourcesRoot = "generated/sources/assets"
         val assetClassDirectory = project.buildDir.resolve("$generatedSourcesRoot")
 
-        val task = project.tasks.register("assets", AssetsTask::class.java) { task ->
+        val task = project.tasks.register("generateAssetsClass", AssetsTask::class.java) { task ->
             task.assetsDirectory.set(exts.assetsDirectory)
             task.assetsPackage.set(exts.assetsPackage)
             task.assetsClassDirectory.set(assetClassDirectory)
