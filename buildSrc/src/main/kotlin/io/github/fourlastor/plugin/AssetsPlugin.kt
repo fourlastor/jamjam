@@ -13,11 +13,13 @@ class AssetsPlugin : Plugin<Project> {
         val generatedSourcesRoot = "generated/sources/assets"
         val assetClassDirectory = project.buildDir.resolve("$generatedSourcesRoot")
 
-        project.tasks.register("assets", AssetsTask::class.java) { task ->
+        val task = project.tasks.register("assets", AssetsTask::class.java) { task ->
             task.assetsDirectory.set(exts.assetsDirectory)
             task.assetsPackage.set(exts.assetsPackage)
             task.assetsClassDirectory.set(assetClassDirectory)
-        }
+        }.get()
+
+        project.tasks.named("build").get().dependsOn(task)
 
         project.plugins.withType(JavaPlugin::class.java) {
             val extension = project.extensions.findByType(JavaPluginExtension::class.java)!! // ?: return@withType
