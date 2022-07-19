@@ -2,6 +2,7 @@
 plugins {
     kotlin("jvm")
     id("com.diffplug.spotless")
+    id("gdx-assets")
 }
 
 spotless {
