@@ -8,7 +8,7 @@ import org.gradle.api.tasks.SourceSet
 
 class AssetsPlugin : Plugin<Project> {
     override fun apply(project: Project) {
-        val exts = project.extensions.create("gdxAssets", AssetsPluginExtension::class.java, project)
+        val exts = project.extensions.create("gdxAssets", AssetsPluginExtension::class.java)
 
         val generatedSourcesRoot = "generated/sources/assets"
         val assetClassDirectory = project.buildDir.resolve("$generatedSourcesRoot")

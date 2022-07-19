@@ -5,6 +5,7 @@ import com.squareup.javapoet.JavaFile
 import com.squareup.javapoet.TypeSpec
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.FileCollection
+import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.OutputDirectory
@@ -13,21 +14,21 @@ import org.gradle.api.tasks.TaskAction
 import java.io.File
 import javax.lang.model.element.Modifier
 
-open class AssetsTask : DefaultTask() {
+abstract class AssetsTask : DefaultTask() {
 
     init {
         group = "build"
         description = "Create static class referencing assets file name."
     }
 
-    @InputFiles
-    val assetsDirectory = project.createProperty<FileCollection>()
+    @get:InputFiles
+    abstract val assetsDirectory: Property<FileCollection>
 
-    @OutputDirectory
-    val assetsClassDirectory = project.createProperty<File>()
+    @get:OutputDirectory
+    abstract val assetsClassDirectory: Property<File>
 
-    @Input
-    val assetsPackage = project.createProperty<String>()
+    @get:Input
+    abstract val assetsPackage: Property<String>
 
     @TaskAction
     fun generate() {
