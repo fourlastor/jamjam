@@ -20,7 +20,7 @@ class JamGame : KtxGame<Screen>() {
 
         VisUI.load(VisUI.SkinScale.X2)
         Scene2DSkin.defaultSkin = VisUI.getSkin()
-        val gameData = reader.data(Gdx.files.internal("maps.ldtk").read())
+        val gameData = reader.data(Gdx.files.internal(Assets.resources_maps_ldtk).read())
 
         addScreen(MenuScreen(this, gameData))
         setScreen<MenuScreen>()

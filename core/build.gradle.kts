@@ -2,6 +2,12 @@
 plugins {
     kotlin("jvm")
     id("com.diffplug.spotless")
+    id("gdx-assets")
+}
+
+gdxAssets {
+    assetsDirectory.set(project.files("src/main/resources"))
+    assetsPackage.set("io.github.fourlastor.jamjam")
 }
 
 spotless {
